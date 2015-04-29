@@ -31,6 +31,10 @@ import edu.cmu.cs.cs214.rec15.server.Message;
  *
  */
 public class ClientPanel extends JPanel implements ClientChangeListener {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7561683125233314242L;
     private static final int FIELD_WIDTH = Integer.parseInt("60");
     private static final int INFO_WIDTH = Integer.parseInt("20");
     private static final int AREA_WIDTH = FIELD_WIDTH + Integer.parseInt("10");
@@ -59,7 +63,6 @@ public class ClientPanel extends JPanel implements ClientChangeListener {
 
     private final JButton startButton;
     private final JButton sendButton;
-
 
     /**
      * Constructor for ClientPanel takes in an instance of the ChatClient that
@@ -107,7 +110,6 @@ public class ClientPanel extends JPanel implements ClientChangeListener {
                 portField, ipField, client, this));
     }
 
-
     private JPanel createStartPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
@@ -116,7 +118,6 @@ public class ClientPanel extends JPanel implements ClientChangeListener {
 
         return panel;
     }
-
 
     private JPanel createUserInfoPanel() {
         JPanel panel = new JPanel();
@@ -143,7 +144,6 @@ public class ClientPanel extends JPanel implements ClientChangeListener {
         return panel;
     }
 
-
     private JPanel createSendPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -156,12 +156,10 @@ public class ClientPanel extends JPanel implements ClientChangeListener {
                 // Ignore
             }
 
-
             @Override
             public void keyReleased(KeyEvent e) {
                 // Ignore
             }
-
 
             @Override
             public void keyPressed(KeyEvent e) {
@@ -172,7 +170,6 @@ public class ClientPanel extends JPanel implements ClientChangeListener {
         });
         return panel;
     }
-
 
     /*
      * (non-Javadoc)
@@ -188,7 +185,6 @@ public class ClientPanel extends JPanel implements ClientChangeListener {
         this.sendButton.setEnabled(true);
         this.messageField.requestFocus();
     }
-
 
     /*
      * (non-Javadoc)
@@ -207,12 +203,12 @@ public class ClientPanel extends JPanel implements ClientChangeListener {
         // TODO: Make the server show the timestamp of the received message.
         // Example output: [15:21:40 -0400] Person: Some message...
 
-        String newText = String.format(" %s: %s%n", msg.getSender(),
+        String newText = String.format("[%s] %s: %s%n",
+                dateFormatter.format(msg.getTimestamp()), msg.getSender(),
                 msg.getContent());
         this.chatArea.append(newText);
         chatArea.setCaretPosition(chatArea.getDocument().getLength());
     }
-
 
     /**
      * Displays a pop-up error message
